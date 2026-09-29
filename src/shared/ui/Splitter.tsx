@@ -1,4 +1,6 @@
-type Props = { onMouseDown: (e: React.MouseEvent) => void };
+import type { MouseEvent } from "react";
+
+type Props = { onMouseDown: (e: MouseEvent) => void };
 
 export function Splitter({ onMouseDown }: Props) {
   return (
@@ -10,11 +12,11 @@ export function Splitter({ onMouseDown }: Props) {
         background: "transparent",
         flexShrink: 0,
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = "var(--accent)";
+      onMouseEnter={(ev) => {
+        ev.currentTarget.style.background = "var(--accent)";
       }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = "transparent";
+      onMouseLeave={(ev) => {
+        ev.currentTarget.style.background = "transparent";
       }}
     />
   );

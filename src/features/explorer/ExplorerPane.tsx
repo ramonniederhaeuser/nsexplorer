@@ -43,22 +43,25 @@ export function ExplorerPane({ path, entries, error, onOpen, onUp, onPick }: Pro
           {path || "Dieser PC"}
         </div>
       </header>
-      {error && <div style={{ padding: 8, color: "#b00" }}>{error}</div>}
+      {error && <div style={{ padding: 8, color: "#f88" }}>{error}</div>}
       <ul style={{ listStyle: "none", margin: 0, padding: 0, overflow: "auto", flex: 1 }}>
-        {entries.map((e) => (
+        {entries.map((entry) => (
           <li
-            key={e.path}
-            onDoubleClick={() => e.is_dir && onOpen(e.path)}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "var(--bg-hover)";
+            key={entry.path}
+            onDoubleClick={() => entry.is_dir && onOpen(entry.path)}
+            onMouseEnter={(ev) => {
+              ev.currentTarget.style.background = "var(--bg-hover)";
             }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
+            onMouseLeave={(ev) => {
+              ev.currentTarget.style.background = "transparent";
             }}
-            style={{ padding: "6px 10px", cursor: e.is_dir ? "pointer" : "default" }}
+            style={{
+              padding: "6px 10px",
+              cursor: entry.is_dir ? "pointer" : "default",
+            }}
           >
-            {e.is_dir ? "📁 " : "📄 "}
-            {e.name}
+            {entry.is_dir ? "📁 " : "📄 "}
+            {entry.name}
           </li>
         ))}
       </ul>
